@@ -1,0 +1,105 @@
+swagger:                  '2.0'
+
+info:
+  title:                  Test-Evidence-As-ServicE API
+  description:            API for the service provisioning the immutable test
+                          evidence service.
+  version: 1.0.0
+host:                     tease.api.co.uk
+basePath:                 /{version}
+schemes:                  https
+
+definitions:
+  CI-details:
+    ci-name:              The name of the CI
+      type:               string
+      required:           no
+    ci-id:                The allocated unique identifier for the CI (OUT)
+                          within the CM identification schema
+      type:               string
+    ci-version:           The version of the  CI (OUT)
+      type:               string
+  evidence-details:
+    timestamp:            The date & time of the generation of the evidence
+                          record
+      type:               timestamp
+    $ref:                 '#/definitions/CI-details'
+    result:               The result ot the test evidenced by the record
+      type:               string
+      enum:               [pass, fail, mitigated]
+  registration-id:
+    type:                 string
+  record-id:
+    type:                 string
+
+paths:
+  /tease/{version}:
+    /register-archive:
+      put:
+        parameters:
+          archive:        The details of the nominated archive (repository) for
+                          the records
+          type:           string
+        responses:
+          200:
+            description:  Successful registration
+            , containing the allocated
+                          id for the registered archive (repository)
+          400:
+            description:  Unsuccessful registration -
+                          "archive already registered"
+          404:
+            description:  Unsuccessful registration - "archive not found"
+    /add-evidence:
+      put:
+        parameters:
+          source:         The id of/for the source of the data
+            type:         uri
+          archive:        The registered target archive id
+            type:         archive-id
+            required:     no
+          $ref:           '#/definitions/evidence-details'
+        responses:
+          200:
+            description:  Successful storage, identifying the id for the new
+                          record
+          400:
+            description:  Unsuccessful addition attempted - reason in the
+                          response
+    /deregister-archive:
+      put:
+        parameters:
+          archive:        The details of the archive (repository) posited for
+                          deletion
+          type:           string
+        responses:
+          200:
+            description:  Successful deregistration
+          404:
+            description:  Unsuccessful deregistration - "archive not found"
+    /retrieve/{id}:
+      get:
+        responses:
+          200:
+            description:  Successful retrieval
+          404:
+            description:  Unsuccessful retrieval - "record not found in archive"
+    /retrieve/{query}:
+      get:
+        parameters:
+          query:
+            type:         query
+        responses:
+          200:
+            description:  Successful retrieval ... response payload includes the
+                          count of records matching the query - optionally
+                          including the records themselves
+            schema:
+              type:
+              properties:
+                count:
+                  type:   integer
+                records:
+                  type:   array # of $
+
+#### END OF DOCUMENT
