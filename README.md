@@ -1,9 +1,8 @@
-# teas
+# tease
 
 ## Description:
 
-This is TEASE (Test-Evidence-As-ServicE) which, as the name might suggest, is (intentded to be) a micro-service that provisions a uniform approach to the recording and subsequent retrieval, of configuration management related records, in this case test evidence and which are, once stored, immutable.
-
+This is TEASE (**T**est-**E**vidence-**A**s-a-**S**ervic**E**) which, as the name might suggest, is (intended to be) a micro-service provisioning a uniform approach to the recording and subsequent retrieval, of configuration management related records ,  and which are, once stored, immutable. in this case test evidence records are the core 
 
 ---
 
