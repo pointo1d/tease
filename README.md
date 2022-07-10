@@ -9,21 +9,23 @@ This is TEASE (Test-Evidence-As-ServicE) which, as the name might suggest, is (i
 
 ## User Stories
 
-### Evidence Storage
 
-#### Story
+### Story
 
 As a test engineer, I want to be able to store immutable records of test evidence in a location of my choosing in order to be able to assert compliance with ruling standards.
 
-#### [Expectations](src/test/features/storage.feature)
+[Expectations](src/test/features/storage.feature)
 
-### Evidence Retrieval 
 
-#### Story
+### Story
 
 As a release engineer, I want to be able to retrieve stored evidence in order to support audits of compliance with ruling standards.
 
-#### [Expectations](src/test/features/retrieval.feature)
+[Expectations](src/test/features/retrieval.feature)
+
+### Story
+
+As a compliance engineer, I want to be assured that the data is incorruptibly stored in order that I may have full confidence in the data.
 
 ---
 
