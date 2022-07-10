@@ -2,7 +2,7 @@
 
 ## Description:
 
-This is TEASE (**T**est-**E**vidence-**A**s-a-**S**ervic**E**) which, as the name might suggest, is (intended to be) a micro-service provisioning a uniform approach to the recording and subsequent retrieval, of configuration management related records ,  and which are, once stored, immutable. in this case test evidence records are the core 
+This is TEASE (**T**est-**E**vidence-**A**s-a-**S**ervic**E**) which, as the name might suggest, is (intended to be) a micro-service provisioning a uniform approach to the recording and subsequent retrieval, of configuration management related records and do so in a manner that ensures that the stored data isn't corrupted in/by the storage and once stored, the stored records are immutable ... the initial i.e. pilot, case uses test evidence records.
 
 ---
 
