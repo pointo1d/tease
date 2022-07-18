@@ -19,12 +19,31 @@ definitions:
       type:               string
     ci-version:           The version of the  CI (OUT)
       type:               string
+  test-pattern:
+    name:                 string
+      description:        A short narrative describing the new pattern
+    sub-patterns:
+      description:
+        required:         no
+      type:               array
+        description:      A list of sub-patterns to associate with the parent
+                          pattern
   evidence-details:
     timestamp:            The date & time of the generation of the evidence
                           record
       type:               timestamp
     $ref:                 '#/definitions/CI-details'
-    result:               The result ot the test evidenced by the record
+    nature:               The nature of the test evidenced by the record
+      type:               string
+      enum:               [FT, NFT]
+    pattern:              The test pattern consumed that generated the record
+      type:               string
+      enum:               [unit, component, integration, acceptance, ...]
+    sub-pattern:          The test sub-pattern consumed in order to generate the
+                          record - depends on the pattern parameter (above).
+      type:               string
+      required:           no
+    result:               The result of the test evidenced by the record
       type:               string
       enum:               [pass, fail, mitigated]
   registration-id:
@@ -60,7 +79,7 @@ paths:
         source:         The id of/for the source of the data
           type:         uri
         archive:        The registered target archive id
-          type:         archive-id
+          type:         url
           required:     no
         $ref:           '#/definitions/evidence-details'
       responses:
