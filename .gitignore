@@ -1,0 +1,8 @@
+# Log files
+*.log
+# Temp files
+*.bak
+*.sav
+*.tmp
+# (g)Vim swapfiles
+*.sw?
