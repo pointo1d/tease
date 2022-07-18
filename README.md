@@ -14,26 +14,37 @@ In creating this, my vision was and indeed still is, of a service running at 2 l
 
 Moreover, in an attempt to follow the fundamental KISS (**K**eep **I**t **Simple** **S**tupid) principle, the vision entails the use of text records maintained using Git repositories - by this means, a version of the registered archive respoitory can readily be utilized at both local and remote levels - thus eliminating the "works for me" syndrome.
 
+Note that the immutability of the stored records is, as the epithet suggests, inviolable whereas the meta-data used in the storage of the records isn't (to the same degeree) and may be modified ruled by the rigour of appropriate change procedures.
+
 ---
 
 ## Actors
 
+### QA Engineer
+
+The _QA Engineer_ is a read-write role whose responsibilities are to...
+- Ensure the creation & initial registration of the archive repository (write).
+- Ensure the records are correctly attributed (by maintaining the test patterns (+ associated sub-patterns - if any) (read-write).
+- Verify the correctness of submission(s)) &/or...
+- Generate elements of release notes in terms of e.g. known failed tests & their mitigation(s) (if any).
+
 ### Engineer
 
-The _Engineer_ has multiple responsibilities...
-1. Initial creation of the archive repository.
-1. Subsequent submission of evidence records and optionally...
-1. Retrieval of created records - to ...
-    1. Verify the correctness of submission(s)) &/or...
-    1. Generate elements of release notes in terms of e.g. known failed tests & their mitigation(s) (if any).
+The _Engineer_ has 2 basic responsibilities...
+- Subsequent submission of evidence records and optionally...
+- Retrieval of created records - to ...
+    - Verify the correctness of submission(s)) &/or...
+    - Generate elements of release notes in terms of e.g. known failed tests & their mitigation(s) (if any).
 
 ### Project Owner
 
-The _Project  Owner_ is a read-only role having the responsibility to retrive stored records for the purposes of such things as dashboarding, release note generation et al.
+The _Project  Owner_ is a read-only role having the responsibility to retrive stored records for the purposes of such things as progress/trend dashboarding, release note generation et al.
 
 ### Auditor
 
-The _Auditor_ is a read-only role having the responsibility to verify the integrity & correctness of the stored records.
+The _Auditor_ is a read-only role having the sole responsibility to verify the integrity & correctness of the stored records.
+sile 
+
 
 ## Use Cases
 
@@ -52,6 +63,8 @@ As a _QA Engineer_, I want to be able to register a new test pattern, c/w option
 ### Update Pattern
 
 As a _QA Engineer_, I want to be able to update previously registered test pattern, typically to add/remove associated sub-patterns, in order to correctly attribute recorded evidence.
+
+Note that deletion of a test (sub-)pattern requires that records attributed with the soon-to-be deleted pattern are re-allocated to a different sub-pattern.
 
 ### Retrieve Record
 
