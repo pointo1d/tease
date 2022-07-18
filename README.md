@@ -8,13 +8,16 @@ This is TEASE (**T**est-**E**vidence-**A**s-a-**S**ervic**E**) which, as the nam
 
 ## Vision
 
-In creating this, my vision was and indeed still is, of a service running at 2 levels whereby the...
+In creating this, my vision was and indeed still is, of a service running at 3 levels whereby the...
 - Lowest level i.e. closest to the record source, is a container provisioning both storage and retrieval capabilities.
 - Higher level is the same container provisioning only a retrieval capability and is typically consumed by e.g. a centralized dashboarding facility.
+- Highest level is also the same container, but this time merely serving to provide a central repository of meta-data e.g. 
+    - Test pattern (+ any associated sub-pattern) definitions.
+    - Archive registry. 
 
 Moreover, in an attempt to follow the fundamental KISS (**K**eep **I**t **Simple** **S**tupid) principle, the vision entails the use of text records maintained using Git repositories - by this means, a version of the registered archive respoitory can readily be utilized at both local and remote levels - thus eliminating the "works for me" syndrome.
 
-Note that the immutability of the stored records is, as the epithet suggests, inviolable whereas the meta-data used in the storage of the records isn't (to the same degeree) and may be modified ruled by the rigour of appropriate change procedures.
+Note that the immutability of the stored records is, as the epithet suggests, inviolable whereas the meta-data used in the storage of the records isn't and may thus be modified ruled by the rigour of appropriate change procedures.
 
 ---
 
@@ -23,14 +26,15 @@ Note that the immutability of the stored records is, as the epithet suggests, in
 ### QA Engineer
 
 The _QA Engineer_ is a read-write role whose responsibilities are to...
-- Ensure the creation & initial registration of the archive repository (write).
+- Ensure the creation & initial registration of archive repositories (write).
 - Ensure the records are correctly attributed (by maintaining the test patterns (+ associated sub-patterns - if any) (read-write).
 - Verify the correctness of submission(s)) &/or...
 - Generate elements of release notes in terms of e.g. known failed tests & their mitigation(s) (if any).
+- Maintain the meta-data repository (read-write).
 
 ### Engineer
 
-The _Engineer_ has 2 basic responsibilities...
+The _Engineer_ (dev, test or even SDET) has 2 basic responsibilities...
 - Subsequent submission of evidence records and optionally...
 - Retrieval of created records - to ...
     - Verify the correctness of submission(s)) &/or...
