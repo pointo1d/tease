@@ -33,73 +33,84 @@ definitions:
     type:                 string
 
 paths:
-  /tease/{version}:
-    /register-archive:
-      put:
-        parameters:
-          archive:        The details of the nominated archive (repository) for
-                          the records
-          type:           string
-        responses:
-          200:
-            description:  Successful registration
-            , containing the allocated
-                          id for the registered archive (repository)
-          400:
-            description:  Unsuccessful registration -
-                          "archive already registered"
-          404:
-            description:  Unsuccessful registration - "archive not found"
-    /add-evidence:
-      put:
-        parameters:
-          source:         The id of/for the source of the data
-            type:         uri
-          archive:        The registered target archive id
-            type:         archive-id
-            required:     no
-          $ref:           '#/definitions/evidence-details'
-        responses:
-          200:
-            description:  Successful storage, identifying the id for the new
-                          record
-          400:
-            description:  Unsuccessful addition attempted - reason in the
-                          response
-    /deregister-archive:
-      put:
-        parameters:
-          archive:        The details of the archive (repository) posited for
-                          deletion
-          type:           string
-        responses:
-          200:
-            description:  Successful deregistration
-          404:
-            description:  Unsuccessful deregistration - "archive not found"
-    /retrieve/{id}:
-      get:
-        responses:
-          200:
-            description:  Successful retrieval
-          404:
-            description:  Unsuccessful retrieval - "record not found in archive"
-    /retrieve/{query}:
-      get:
-        parameters:
-          query:
-            type:         query
-        responses:
-          200:
-            description:  Successful retrieval ... response payload includes the
-                          count of records matching the query - optionally
-                          including the records themselves
-            schema:
-              type:
-              properties:
-                count:
-                  type:   integer
-                records:
-                  type:   array # of $
+  /register-archive:
+    put:
+      parameters:
+        remote:         The full URL for the github.com hosted repository
+                        nominated archive. If not provided, then _clone_ MUST
+                        be provided and has been pre-configured with the remote
+                        repository.
+        clone:          The URI of the cloned version of the remote repository -
+                        if not provided, then _remote_ MUST have been provided.
+      responses:
+        200:
+          description:  Successful registration, containing the registered URL.
+        400:
+          description:  Unsuccessful registration - "parameter error" (if
+                        neither remote or local is given)
+        400:
+          description:  Unsuccessful registration - "URL already registered"
+        404:
+          description:  Unsuccessful registration - "URL not found" or
+                        "URI not found" (depending on the combination of remote
+                        & clone parameters.
+  /submit-evidence:
+    put:
+      parameters:
+        source:         The id of/for the source of the data
+          type:         uri
+        archive:        The registered target archive id
+          type:         archive-id
+          required:     no
+        $ref:           '#/definitions/evidence-details'
+      responses:
+        200:
+          description:  Successful submission, identifying the id for the new
+                        record
+        400:
+          description:  Unsuccessful addition attempted - reason in the response
+        428:
+          description:  Unsuccessful addition attempted - the precondition has
+                        not been met aka the archive has not been registered.
+  /deregister-archive:
+    put:
+      parameters:
+        archive:        The details of the archive repository posited for
+                        deletion - can be either local or remote with the same
+                        caveats as for `register-archive` above.
+        200:
+          description:  Successful deregistration
+        404:
+          description:  Unsuccessful deregistration - "archive not found"
+  /retrieve/{id}:
+    get:
+      parameters:
+        full:
+          description:  When & only when set true, this causes the full record
+                        to be returned, otherwise the status is the only means
+                        of determinging if the sought-after record exists.
+          type:         boolean
+      responses:
+        200:
+          description:  Successful retrieval
+        404:
+          description:  Unsuccessful retrieval - "record not found in archive"
+  /retrieve/{query}:
+    get:
+      parameters:
+        query:
+          type:         query
+      responses:
+        200:
+          description:  Successful retrieval ... response payload includes the
+                        count of records matching the query - optionally
+                        including the records themselves
+          schema:
+            type:
+            properties:
+              count:
+                type:   integer
+              records:
+                type:   array # of $
 
 #### END OF DOCUMENT
