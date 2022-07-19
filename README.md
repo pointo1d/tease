@@ -21,7 +21,7 @@ Note that the immutability of the stored records is, as the epithet suggests, in
 
 ---
 
-[Use Case Diagram](UML/tease.ucase.violet.html)
+[Use Case Diagram](src/model/UML/tease.ucase.violet.html)
 
 ## Actors
 
