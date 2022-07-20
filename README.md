@@ -21,7 +21,7 @@ Note that the immutability of the stored records is, as the epithet suggests, in
 
 ---
 
-[Use Case Diagram](src/model/UML/tease.ucase.violet.html)
+![](./src/model/UML/tease.ucase.violet.html.png)
 
 ## Actors
 
@@ -31,33 +31,38 @@ This isn't a use case per-se, but merely a container for the NFT use cases that 
 
 As an _interested party_, I want...
 
-- stored records to be immutable in order to be assured of their post-storage quality i.e. untampered state (**Immutable Stored Records**).
-- stored records to be uniquely identifiable (**Uniquely Identified Stored Records**).
+- stored records to be immutable in order to be assured of their post-storage quality i.e. untampered state (**Immutable (stored records)**).
+- stored records to be uniquely identifiable (**Uniquely Identify (stored records)**).
+- searchable stored records (**Searchability (of stored records)**).
 
 ### Administrator
 
 #### Use Case(s)
 
-As an _Administrator_, I want to be able to maintain the meta-data repository in order to maintain the alignment between the definitions & the (current) _thinking_.
+As an _Administrator_, I want to be able to...
+- Register an archive repository in order to provide a receiver for records to be lodged (**Register archive**).
+- Maintain the meta-data repository in order to maintain the alignment between the definitions & the (current) _thinking_ (**Maintain Metadata**).
+- De-register a registered archive (**De-register archive**) in order to keep the registry streamlined (& thus efficient).
 
 ### QA Engineer
 
 #### Use Case(s)
 
 As a _QA Engineer_,  I want to be able to...
-- Register an archive repository in order to provide a receiver for records to be lodged (write).
-- Ensure the records are correctly attributed (by maintaining the test patterns (+ associated sub-patterns - if any) (read-write).
-- Verify the correctness of submission(s)) &/or...
-- Generate elements of release notes in terms of e.g. known failed tests & their mitigation(s) (if any).
+- Register an archive repository in order to provide a receiver for records to be lodged (**Register new archive**).
+- Maintain the meta-data repository in order to maintain the alignment between the definitions & the (current) _thinking_ (**Maintain Metadata**).
+- **Retrieve record**, using an optional filter, in order to...
+    - Verify the correctness of submission(s)) &/or...
+    - Generate elements of release notes in terms of e.g. known failed tests & their mitigation(s) (if any).
 
 ### Engineer
 
 #### Use Case(s)
 
 As an _Engineer_ (dev, test or even SDET), I want to be able to...
-- Lodge records.
-- Retrieve lodged record(s), using an optional filter, in order to...
-    - Verify the correctness of submission(s)) &/or...
+- **Lodge Record** in order to be able to record the current state.
+- **Retrieve Record**, using an optional filter, in order to...
+    - integrity & correctness of submission(s)) &/or...
     - Generate elements of release notes in terms of e.g. known failed tests & their mitigation(s) (if any).
 
 ### Project Owner
@@ -65,19 +70,22 @@ As an _Engineer_ (dev, test or even SDET), I want to be able to...
 #### Use Case(s)
 
 As a  _Project  Owner_, I want to be able to...
-- retrieve stored records in order to generate such elements as progress/trend dashboarding, release note generation et al.
+- **Retrieve Record**, using an optional filter, in order to...
+    - Generate elements of release notes in terms of e.g. known failed tests & their mitigation(s) (if any).
 
 ### Auditor
 
 #### Use Case(s)
 
 As an _Auditor_, I want to be able to...
-- retrieve stored records in order to verify the integrity & correctness of the retrieved records.
+- **Retrieve Record**, using an optional filter, in order to...
+    - Verify the integrity & correctness of submission(s)).
 
 ---
 
 ## To Do
 
+- ~~Introduce the above use cases in diagrammatic form.~~
 - Extrapolate the generics to create a configurable, immutable records archival/storage & retrieval service e.g. **R** **E** of **I**mmutable **E**vidence **S**ervice ;-), of which this i.e. test evidence, is but an instantiation and is such as might be employed in any CM system worthy of the epithet.
 
 ---
